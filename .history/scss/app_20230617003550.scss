@@ -1,0 +1,84 @@
+/* code chay uu tien tu duoi len */
+/* DIEM MANH CUA SASS
+1. variable name;
+2. nested item;
+3. mixin: doan code tai su dung;
+    --> syntax: khai bao
+    @mixin nameMixin(){}
+    --> syntax: su dung
+    @include nameMixin();
+4.import:
+    - tach rieng file: ten bien, 1 file mixin
+    - do file nay ko grenerate -> dat ten __xx
+*/
+
+
+@mixin bgc($background:red){
+    background-color: $background;
+}
+
+// hinh vuong
+@mixin size($width,$height: $width){
+    width: $width;
+    height: $height;
+}
+
+.demo {
+  color: blue;
+}
+
+
+
+// nested codes - code long nhau
+/* header-inner
+header-inner-text
+*/
+.header {
+  padding: 2rem;
+    //   background-color: black;
+    @include bgc(#b5a1ad);
+  &-inner {
+    color: white;
+    background-color: aquamarine;
+    &-text {
+      color: yellow;
+      &:hover {
+        @include bgc(#992244);
+      }
+    }
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+p {
+  color: $textcolor;
+  padding: 2rem;
+  background-color: $background;
+}
+
+// viet ham
+@mixin absoluteCenter ($direction: "left"){
+    position: absolute;
+
+    @if $direction == "left" {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @if $direction == "top" {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    @if $direction == "both" {
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.box{
+    @include bgc();
+    @include size(100px);
+    @include absoluteCenter("left");
+}

@@ -1,0 +1,65 @@
+/* code chay uu tien tu duoi len */
+/* DIEM MANH CUA SASS
+1. variable name;
+2. nested item;
+3. mixin: doan code tai su dung;
+    --> syntax: khai bao
+    @mixin nameMixin(){}
+    --> syntax: su dung
+    @include nameMixin();
+4.import:
+    - tach rieng file: ten bien, 1 file mixin
+    - do file nay ko grenerate -> dat ten __xx
+*/
+// variables
+@import "./variables";
+@import "./mixins";
+
+.demo {
+  color: blue;
+}
+
+// nested codes - code long nhau
+/* header-inner
+header-inner-text
+*/
+.header {
+  padding: 2rem;
+    //   background-color: black;
+    @include bgc(#b5a1ad);
+  &-inner {
+    color: white;
+    background-color: aquamarine;
+    &-text {
+      color: yellow;
+      &:hover {
+        @include bgc(#992244);
+      }
+    }
+    &:hover {
+    //   color: red;
+    color:$textcolor;
+    }
+  }
+  /* @media screen and (min-width: 1024px) {
+    .header{
+        display: none;
+    }
+  } */
+}
+
+p {
+  color: $textcolor;
+  padding: 2rem;
+  background-color: $background;
+}
+
+.box{
+    @include bgc();
+    @include size(100px);
+    @include absoluteCenter("left");
+}
+
+@include minWidth(1024){
+    display: none;
+}
